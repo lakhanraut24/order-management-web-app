@@ -1,0 +1,13 @@
+/* src/styles.css */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Add more CSS rules as needed */
+  

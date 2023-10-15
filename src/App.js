@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+import CustomerOrderForm from './components/CustomerOrderForm.js';
+import AdminOrderList from './components/AdminOrderList.js';
+
+
+function App() {;
+  const [orders, setOrders] = useState([]);
+
+  const handleAddOrder = (order) => {
+    setOrders([...orders, { ...order, status: 'Pending' }]);
+  };
+
+  const handleApproveOrder = (index) => {
+    const updatedOrders = [...orders];
+    updatedOrders[index].status = 'Approved';
+    setOrders(updatedOrders);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Order Management App</h1>
+      <CustomerOrderForm onAddOrder={handleAddOrder} />
+      <AdminOrderList orders={orders} onApprove={handleApproveOrder} />
     </div>
   );
 }
